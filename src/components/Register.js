@@ -19,7 +19,7 @@ function Register() {
         password: password,
       },
     })
-      .then((res) => console.log(res + "this is the response"))
+      .then((res) => console.log(res.data))
       .catch((err) => console.log(err + "this is the error"));
     setUsername("");
     setFirstName("");

@@ -20,10 +20,22 @@ function Login() {
   //       .catch((err) => console.log(err + "this is the error login"));
   //   };
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    return null;
+    axios({
+      method: "POST",
+      url: "http://localhost:5000/api/login",
+      data: {
+        username: username,
+        password: password,
+      },
+    })
+      .then((res) => setIsLoggedIn(res.data))
+      .catch((err) => console.log(err + "this is the error"));
   };
+
   return (
     <>
       <h1>Login</h1>
@@ -41,6 +53,7 @@ function Login() {
         <button>Login</button>
       </form>
       {/* <h2>welcome {firstname}</h2> */}
+      {isLoggedIn ? <h2>Welcome!</h2> : <h2>Incorrect Information</h2>}
     </>
   );
 }
